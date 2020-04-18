@@ -1,11 +1,12 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require('path')
 
 module.exports = {
     mode:'production',
     entry:'./src/index.js',
     output:{
-        path:'./dist/js',
+        path:path.join(__dirname,'./dist/js'),
         filename:'[name]-[hash].js'
     },
     resolve:{
