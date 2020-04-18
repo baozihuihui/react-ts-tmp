@@ -5,6 +5,7 @@ const path = require('path');
 module.exports = {
     mode:'development',
     entry:['./src/index.js','./src/dev.js'],
+    devtool: 'cheap-module-eval-source-map', // 开发环境我们只添加  忽略列信息的ts源码的sourcemap
     devServer:{
         contentBase:path.join(__dirname,'./src/'),
         publicPath:'/',
