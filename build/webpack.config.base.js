@@ -1,31 +1,23 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const util = require('./util')
 
 module.exports = {
-    entry: {
-        'app': './src/index.ts'   // 入口文件
-    },
-    output: {
-        filename: '[name].[chunkhash:8].js' // 编译的文件以名字.hash值结尾
-    },
-    resolve: {
-        extensions: ['.js', '.ts', '.tsx']
+    resolve:{
+        extensions:['.wasm','.mjs','.js','.json','.jsx','.tsx']
     },
     module: {
-        rules: [
+        rules:[
             {
-                test: /\.tsx?$/i,
-                use: [{
-                    loader: 'ts-loader'
-                }],
-                exclude: /node_modules/
-            }
+                test: /\.js$/,
+                use: util.loaders.babelLoader,
+                exclude: /(node_modules|dist)/,
+              },
+              {
+                test: /\.tsx?$/,
+                use: [util.loaders.babelLoader, util.loaders.tsLoader],
+                exclude: /node_modules/,
+              },
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './public/index.html'    // 启动HTML文件
-        })
-    ],
     optimization: { // 简单拆包
         splitChunks: {
             chunks: 'all'

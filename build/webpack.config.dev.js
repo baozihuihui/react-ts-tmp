@@ -1,10 +1,10 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack'); 
-const path = require('path');
+const  HtmlWebPackPlugin = require('html-webpack-plugin')
+const webpack  = require('webpack')
+const path  = require('path')
 
 module.exports = {
     mode:'development',
-    entry:['./src/index.js','./src/dev.js'],
+    entry:['./src/index.tsx','./src/dev.js'],
     devtool: 'cheap-module-eval-source-map', // 开发环境我们只添加  忽略列信息的ts源码的sourcemap
     devServer:{
         contentBase:path.join(__dirname,'./src/'),
@@ -15,34 +15,6 @@ module.exports = {
         stats:{
             colors:true
         }
-    },
-    resolve:{
-        extensions:['.wasm','.mjs','.js','.json','.jsx']
-    },
-    module:{
-        rules:[
-            {
-                test:/\.jsx?$/,
-                exclude:/node_modules/,
-                use:{
-                    loader:'babel-loader',
-                    options:{
-                        // babel 转义的配置选项
-                        babelrc:false,
-                        presets:[
-                            // 添加 preset-react
-                            require.resolve('@babel/preset-react'),
-                            [require.resolve('@babel/preset-env'),{modules:false}]
-                        ],
-                        cacheDirectory:true
-                    }
-                }
-            },
-            {
-                test:/\.tsx?$/,
-                loader:'awesome-typescript-loader'
-            }
-        ]
     },
     plugins:[
         new HtmlWebPackPlugin({
