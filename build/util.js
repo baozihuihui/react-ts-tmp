@@ -1,4 +1,4 @@
-const tsImportPluginFactory = require('ts-import-plugin')
+const tsImportPluginFactory = require("ts-import-plugin");
 
 const babelLoader = {
   loader: "babel-loader",
@@ -15,7 +15,7 @@ const babelLoader = {
 };
 
 const tsLoader = {
-  loader: "ts-loader", 
+  loader: "ts-loader",
 };
 
 const styleLoader = {
@@ -27,8 +27,11 @@ const cssLoader = {
 };
 
 const lessLoader = {
-  loader: 'less-loader',
-}
+  loader: "less-loader",
+  options: {
+    javascriptEnabled: true,
+  },
+};
 
 const util = {
   loaders: {
@@ -40,4 +43,4 @@ const util = {
   },
 };
 
-module.exports = util
+module.exports = util;
