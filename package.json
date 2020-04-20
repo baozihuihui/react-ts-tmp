@@ -8,17 +8,6 @@
         "start": "webpack-dev-server --mode=development --open  --config build/webpack.config.js",
         "lint": "eslint src --fix --ext .ts,.tsx "
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "npm run lint"
-        }
-    },
-    "lint-staged": {
-        "*.{.ts,.tsx}": [
-            "eslint",
-            "git add"
-        ]
-    },
     "author": "gxd",
     "license": "ISC",
     "dependencies": {
