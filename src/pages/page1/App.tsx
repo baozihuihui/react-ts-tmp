@@ -1,7 +1,8 @@
 import * as React from 'react'
+import Helle from '../../view/Hello'
 
 export default class App extends React.Component {
     render(){
-        return <div> 入口！</div>
+        return <Helle name={'coder'} />
     }
 }

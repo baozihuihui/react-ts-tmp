@@ -16,6 +16,29 @@ module.exports = {
                 use: [util.loaders.babelLoader, util.loaders.tsLoader],
                 exclude: /node_modules/,
               },
+              {
+                test: /\.css$/,
+                exclude: /node_modules/, // exclude antd default style
+                use: [util.loaders.styleLoader, util.loaders.cssLoader],
+              },
+              {
+                test: /\.less$/,
+                exclude: /node_modules/, // exclude antd default style
+                use: [
+                  util.loaders.styleLoader,
+                  util.loaders.cssLoader,
+                  util.loaders.lessLoader,
+                ],
+              },
+              {
+                test: /\.less$/,
+                include: /node_modules/, // parse antd style , no css modules option
+                use: [
+                  util.loaders.styleLoader,
+                  util.loaders.cssLoader,
+                  util.loaders.lessLoader,
+                ],
+              },
         ]
     },
     optimization: { // 简单拆包

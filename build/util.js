@@ -15,20 +15,7 @@ const babelLoader = {
 };
 
 const tsLoader = {
-  loader: "ts-loader",
-  options: {
-    transpileOnly: true,
-    getCustomTransformers: () => ({
-      before: [
-        tsImportPluginFactory({
-          libraryName: "antd",
-          // libraryDirectory: 'lib',
-          libraryDirectory: "es", // for webpack 4 !!!!!
-          style: true,
-        }),
-      ],
-    }),
-  },
+  loader: "ts-loader", 
 };
 
 const styleLoader = {
@@ -39,26 +26,9 @@ const cssLoader = {
   loader: "css-loader", // translates CSS into CommonJS
 };
 
-const cssModulesLoader = {
-  loader: "css-loader",
-  options: {
-    importLoaders: 2, // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, sass-loader
-    modules: true,
-  },
-};
-
-const TypingsLessModulesLoader = {
-  loader: "typings-for-css-modules-loader",
-  options: {
-    importLoaders: 2,
-    modules: true,
-    namedExport: true,
-    camelCase: true,
-    localIdentName: "[name]__[local]___[hash:base64:5]",
-  },
-};
-
-const postcssLoader = "postcss-loader";
+const lessLoader = {
+  loader: 'less-loader',
+}
 
 const util = {
   loaders: {
@@ -66,9 +36,7 @@ const util = {
     tsLoader,
     styleLoader,
     cssLoader,
-    cssModulesLoader,
-    TypingsLessModulesLoader,
-    postcssLoader,
+    lessLoader,
   },
 };
 

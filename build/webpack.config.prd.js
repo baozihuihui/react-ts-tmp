@@ -1,15 +1,26 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const path = require("path");
 
 module.exports = {
   mode: "production",
-  entry:'./src/index.tsx',
+  entry:'./src/pages/page1/index.tsx',
+  devtool: 'cheap-module-eval-source-map',
   output: {
     path: path.join(__dirname, "../dist"),
     filename: "js/[name].[chunkhash:6].js",
     chunkFilename: "js/[name].[chunkhash:6].js",
+  },
+  optimization:{
+    minimizer:[
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true, // set to true if you want JS source maps
+      }),
+    ]
   },
   plugins: [
     new HtmlWebPackPlugin({
