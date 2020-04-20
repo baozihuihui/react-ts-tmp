@@ -16,8 +16,12 @@ export default class Hello extends React.Component<IProps, IState> {
         count: 0,
     }
 
-    handleBtnClick = () => {
+    handleAddBtnClick = () => {
         this.setState(state => ({count: state.count + 1}))
+    }
+
+    handleSubBtnClick = () => {
+        this.setState(state => ({count: state.count - 1}))
     }
 
     render() {
@@ -25,8 +29,11 @@ export default class Hello extends React.Component<IProps, IState> {
             <>
                 <div>{`hello,${this.props.name}`}</div>
                 <div>counter:{this.state.count}</div>
-                <Button onClick={this.handleBtnClick} type="primary">
+                <Button onClick={this.handleAddBtnClick} type="primary">
                     +1
+                </Button>
+                <Button type="dashed" onClick={this.handleSubBtnClick}>
+                    -1
                 </Button>
             </>
         )

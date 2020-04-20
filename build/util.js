@@ -1,46 +1,56 @@
-const tsImportPluginFactory = require("ts-import-plugin");
+/** @format */
+
+const tsImportPluginFactory = require('ts-import-plugin')
 
 const babelLoader = {
-  loader: "babel-loader",
-  options: {
-    // babel 转义的配置选项
-    babelrc: false,
-    presets: [
-      // 添加 preset-react
-      require.resolve("@babel/preset-react"),
-      [require.resolve("@babel/preset-env"), { modules: false }],
-    ],
-    cacheDirectory: true,
-  },
-};
+    loader: 'babel-loader',
+    options: {
+        babelrc: true,
+        cacheDirectory: true,
+    },
+}
 
 const tsLoader = {
-  loader: "ts-loader",
-};
+    loader: 'ts-loader',
+    options: {
+        transpileOnly: true,
+        // 因为引入tsx->ts-loader,antd的按需加载需要 ts-import-plugin
+        getCustomTransformers: () => ({
+            before: [
+                tsImportPluginFactory({
+                    libraryName: 'antd',
+                    // libraryDirectory: 'lib',
+                    libraryDirectory: 'es', // for webpack 4 !!!!!
+                    style: true,
+                }),
+            ],
+        }),
+    },
+}
 
 const styleLoader = {
-  loader: "style-loader", // creates style nodes from JS strings
-};
+    loader: 'style-loader', // creates style nodes from JS strings
+}
 
 const cssLoader = {
-  loader: "css-loader", // translates CSS into CommonJS
-};
+    loader: 'css-loader', // translates CSS into CommonJS
+}
 
 const lessLoader = {
-  loader: "less-loader",
-  options: {
-    javascriptEnabled: true,
-  },
-};
+    loader: 'less-loader',
+    options: {
+        javascriptEnabled: true,
+    },
+}
 
 const util = {
-  loaders: {
-    babelLoader,
-    tsLoader,
-    styleLoader,
-    cssLoader,
-    lessLoader,
-  },
-};
+    loaders: {
+        babelLoader,
+        tsLoader,
+        styleLoader,
+        cssLoader,
+        lessLoader,
+    },
+}
 
-module.exports = util;
+module.exports = util
