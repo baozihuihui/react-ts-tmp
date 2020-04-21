@@ -15,5 +15,9 @@
             }
         ],
         "@babel/react"
+    ],
+    "plugins": [
+        "lodash",
+        "recharts"
     ]
 }

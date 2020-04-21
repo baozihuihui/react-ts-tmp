@@ -1,4 +1,5 @@
 /** @format */
+var LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 const util = require('./util')
 
@@ -20,12 +21,10 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                // exclude: /node_modules/, // exclude antd default style
                 use: [util.loaders.styleLoader, util.loaders.cssLoader],
             },
             {
                 test: /\.less$/,
-                // exclude: /node_modules/, // exclude antd default style
                 use: [util.loaders.styleLoader, util.loaders.cssLoader, util.loaders.lessLoader],
             },
         ],
@@ -57,4 +56,10 @@ module.exports = {
             // },
         },
     },
+    plugins: [
+        new LodashModuleReplacementPlugin({
+            collections: true,
+            paths: true,
+        }),
+    ],
 }
