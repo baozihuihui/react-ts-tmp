@@ -9,7 +9,7 @@
         "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
         "format": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'"
     },
-    "author": "gxd",
+    "author": "sn",
     "license": "ISC",
     "dependencies": {
         "antd": "^4.1.4",
@@ -19,6 +19,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
+        "@babel/polyfill": "^7.8.7",
         "@babel/preset-env": "^7.9.0",
         "@babel/preset-react": "^7.9.4",
         "@types/react": "^16.9.34",
