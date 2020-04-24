@@ -24,11 +24,11 @@ module.exports = {
             {
                 // cssModulesTypescriptLoader 必须在 css-loader后进行
                 test: /\.css$/,
-                exclude: /node-modules/,
                 use: [util.loaders.styleLoader, util.loaders.cssModulesTypescriptLoader, util.loaders.cssLoader],
             },
             {
                 test: /\.less$/,
+                exclude: /node-modules/,
                 use: [
                     // postcss必须在css和less中间
                     util.loaders.styleLoader,

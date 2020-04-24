@@ -27,7 +27,7 @@ export default class Hello extends React.Component<IProps, IState> {
     }
 
     render() {
-        console.log(styles.cssExports.test)
+        // console.log(styles.cssExports.test)
         return (
             <>
                 <div>{`hello,${this.props.name}`}</div>
