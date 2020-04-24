@@ -3,6 +3,7 @@
 import * as React from 'react'
 import {Button} from 'antd'
 import * as _ from 'lodash'
+import * as styles from './index.less'
 
 interface IProps {
     name: string
@@ -26,10 +27,12 @@ export default class Hello extends React.Component<IProps, IState> {
     }
 
     render() {
+        console.log(styles.cssExports.test)
         return (
             <>
                 <div>{`hello,${this.props.name}`}</div>
                 <div>counter:{this.state.count}</div>
+                <div>less test! display:none</div>
                 <Button onClick={this.handleAddBtnClick} type="primary">
                     +1
                 </Button>

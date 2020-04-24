@@ -9,6 +9,7 @@ module.exports = {
     },
     module: {
         rules: [
+            // loader use数组 是逆序使用
             {
                 test: /\.js$/,
                 use: util.loaders.babelLoader,
@@ -19,13 +20,33 @@ module.exports = {
                 use: [util.loaders.babelLoader, util.loaders.tsLoader],
                 exclude: /node_modules/,
             },
+            // /src
             {
+                // cssModulesTypescriptLoader 必须在 css-loader后进行
                 test: /\.css$/,
-                use: [util.loaders.styleLoader, util.loaders.cssLoader],
+                exclude: /node-modules/,
+                use: [util.loaders.styleLoader, util.loaders.cssModulesTypescriptLoader, util.loaders.cssLoader],
             },
             {
                 test: /\.less$/,
-                use: [util.loaders.styleLoader, util.loaders.cssLoader, util.loaders.lessLoader],
+                use: [
+                    // postcss必须在css和less中间
+                    util.loaders.styleLoader,
+                    util.loaders.cssLoader,
+                    util.loaders.postcssLoader,
+                    util.loaders.lessLoader,
+                ],
+            },
+            // /node-modules
+            {
+                test: /\.less$/,
+                include: /node-modules/, // parse antd style , no css modules option
+                use: [
+                    util.loaders.styleLoader,
+                    util.loaders.cssLoaderNoModules,
+                    util.loaders.postcssLoader,
+                    util.loaders.lessLoader,
+                ],
             },
         ],
     },
