@@ -20,7 +20,7 @@ const tsLoader = {
                 tsImportPluginFactory({
                     libraryName: 'antd',
                     libraryDirectory: 'es', // for webpack 4 !!!!!
-                    style: true,
+                    style: true, // style :true 加载less文件
                 }),
             ],
         }),
@@ -34,7 +34,7 @@ const styleLoader = {
 const cssLoader = {
     loader: 'css-loader', // translates CSS into CommonJS
     options: {
-        modules: true,
+        modules: true, // 新增对css modules的支持
     },
 }
 

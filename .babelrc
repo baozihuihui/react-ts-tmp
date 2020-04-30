@@ -5,19 +5,13 @@
             {
                 "modules": false,
                 "targets": {
-                    "browsers": [
-                        "> 1%",
-                        "IE 10",
-                        "safari >= 7"
-                    ]
+                    "browsers": ["> 1%", "IE 10", "safari >= 7"]
                 },
-                "useBuiltIns": "entry"
+                "useBuiltIns": "usage",
+                "corejs": 3
             }
         ],
         "@babel/react"
     ],
-    "plugins": [
-        "lodash",
-        "recharts"
-    ]
+    "plugins": ["lodash", "recharts"]
 }

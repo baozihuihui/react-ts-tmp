@@ -1,9 +1,9 @@
 /** @format */
 
 import * as React from 'react'
-import {Button} from 'antd'
+import {Button, Input} from 'antd'
 import * as _ from 'lodash'
-import * as styles from './index.less'
+// import * as styles from './index.less'
 
 interface IProps {
     name: string
@@ -39,6 +39,7 @@ export default class Hello extends React.Component<IProps, IState> {
                 <Button type="dashed" onClick={this.handleSubBtnClick}>
                     -1
                 </Button>
+                <Input.TextArea value="this is a test !"></Input.TextArea>
             </>
         )
     }
