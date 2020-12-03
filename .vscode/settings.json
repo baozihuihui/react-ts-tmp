@@ -11,4 +11,7 @@
         ]
     },
     "eslint.exclude": "**/node_modules/**/*,**/.history/**",
+    "files.exclude": {
+        "**/*.less.d.ts": true
+      },
 }

@@ -27,13 +27,12 @@ export default class Hello extends React.Component<IProps, IState> {
     }
 
     render() {
-        // console.log(styles.cssExports.test)
+        console.log(styles)
         return (
             <>
-                <div className={styles.test}>{`hello,${this.props.name}`}</div>
                 <div>{`hello,${this.props.name}`}</div>
                 <div>counter:{this.state.count}</div>
-                <div>less test! display:none</div>
+                <div className={styles.test}>less test! display:none </div>
                 <Button onClick={this.handleAddBtnClick} type="primary">
                     +1
                 </Button>

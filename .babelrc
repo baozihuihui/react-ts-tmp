@@ -13,5 +13,10 @@
         ],
         "@babel/react"
     ],
-    "plugins": ["lodash", "recharts"]
+    "plugins": [
+        "lodash", 
+        "recharts",
+        // antd 按需引入
+        ["import",{"libraryName": "antd","libraryDirectory": "es","style": true}]
+    ]
 }

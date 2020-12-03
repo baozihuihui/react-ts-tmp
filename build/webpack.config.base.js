@@ -10,43 +10,76 @@ module.exports = {
     module: {
         rules: [
             // loader use数组 是逆序使用
+            // 图片文件
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            // outputPath:'../',//输出**文件夹
+                            publicPath: '/',
+                            name: 'images/[name].[ext]',
+                            limit: 1000, //是把小于1000B的文件打成Base64的格式，写入JS
+                        },
+                    },
+                ],
+            },
+            // 文字文件
+            {
+                test: /\.(woff|svg|eot|woff2|tff)$/,
+                exclude: /node_modules/,
+                use: 'url-loader',
+            },
+            // js 文件
             {
                 test: /\.js$/,
                 exclude: /(node_modules|dist)/,
                 use: util.loaders.babelLoader,
             },
+            // tsx 文件
             {
                 test: /\.tsx?$/,
                 exclude: /node_modules/,
                 use: [util.loaders.babelLoader, util.loaders.tsLoader],
             },
-            // /css
+            // css less cssModule
+            // src css
             {
-                // cssModulesTypescriptLoader 必须在 css-loader后进行
                 test: /\.css$/,
-                use: [util.loaders.styleLoader, util.loaders.cssLoaderNoModules],
+                exclude: /node_modules/, // exclude antd default style
+                use: [
+                    util.loaders.styleLoader,
+                    util.loaders.getcssLoader({
+                        importLoaders: 1,
+                    }),
+                ],
+                sideEffects: true,
             },
             // src less
             {
                 test: /\.less$/,
-                exclude: /node-modules/,
+                exclude: /node_modules/, // exclude antd default style
                 use: [
-                    // postcss必须在css和less中间
                     util.loaders.styleLoader,
-                    // util.loaders.cssModulesTypescriptLoader,
-                    util.loaders.cssLoaderNoModules,
+                    '@teamsupercell/typings-for-css-modules-loader',
+                    util.loaders.getcssLoader({
+                        modules: true,
+                        importLoaders: 2,
+                    }),
                     util.loaders.postcssLoader,
                     util.loaders.lessLoader,
                 ],
             },
-            // src /node-modules
+            //  /node-modules antd 不支持模块化
             {
                 test: /\.less$/,
-                exclude: /src/, // parse antd style , no css modules option
+                include: /node_modules/, // parse antd style , no css modules option
                 use: [
-                    // postcss必须在css和less中间
-                    // util.loaders.styleLoader,
-                    util.loaders.cssLoaderNoModules,
+                    util.loaders.styleLoader,
+                    util.loaders.getcssLoader({
+                        importLoaders: 2,
+                    }),
                     util.loaders.postcssLoader,
                     util.loaders.lessLoader,
                 ],

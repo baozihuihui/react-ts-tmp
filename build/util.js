@@ -31,35 +31,34 @@ const styleLoader = {
     loader: 'style-loader', // creates style nodes from JS strings
 }
 
-const cssLoader = {
+const getcssLoader = options => ({
     loader: 'css-loader', // translates CSS into CommonJS
-    options: {
-        importLoaders: 1,
-        modules: true,
-    },
-}
-
-const cssLoaderNoModules = {
-    loader: 'css-loader', // antd包 不需要模块化，否则会无法加载
-}
+    options,
+})
 
 const postcssLoader = {
     loader: 'postcss-loader',
     options: {
         ident: 'postcss',
-        plugins: () => [require('autoprefixer')()],
+        plugins: () => [
+            require('postcss-flexbugs-fixes'),
+            require('postcss-preset-env')({
+                autoprefixer: {
+                    flexbox: 'no-2009',
+                },
+                stage: 3,
+            }),
+        ],
     },
 }
 
 const lessLoader = {
     loader: 'less-loader',
     options: {
-        javascriptEnabled: true,
+        lessOptions: {
+            javascriptEnabled: true,
+        },
     },
-}
-
-const cssModulesTypescriptLoader = {
-    loader: 'css-modules-typescript-loader',
 }
 
 const util = {
@@ -67,11 +66,9 @@ const util = {
         babelLoader,
         tsLoader,
         styleLoader,
-        cssLoader,
+        getcssLoader,
         lessLoader,
         postcssLoader,
-        cssModulesTypescriptLoader,
-        cssLoaderNoModules,
     },
 }
 
