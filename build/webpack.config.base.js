@@ -20,13 +20,13 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [util.loaders.babelLoader, util.loaders.tsLoader],
             },
-            // /src
+            // /css
             {
                 // cssModulesTypescriptLoader 必须在 css-loader后进行
                 test: /\.css$/,
-
                 use: [util.loaders.styleLoader, util.loaders.cssLoaderNoModules],
             },
+            // src less
             {
                 test: /\.less$/,
                 exclude: /node-modules/,
@@ -39,13 +39,13 @@ module.exports = {
                     util.loaders.lessLoader,
                 ],
             },
-            // /node-modules
+            // src /node-modules
             {
                 test: /\.less$/,
                 exclude: /src/, // parse antd style , no css modules option
                 use: [
                     // postcss必须在css和less中间
-                    util.loaders.styleLoader,
+                    // util.loaders.styleLoader,
                     util.loaders.cssLoaderNoModules,
                     util.loaders.postcssLoader,
                     util.loaders.lessLoader,

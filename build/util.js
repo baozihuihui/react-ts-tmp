@@ -34,7 +34,8 @@ const styleLoader = {
 const cssLoader = {
     loader: 'css-loader', // translates CSS into CommonJS
     options: {
-        modules: true, // 新增对css modules的支持
+        importLoaders: 1,
+        modules: true,
     },
 }
 

@@ -1,7 +1,5 @@
 {
     "editor.formatOnSave": true,
-    "eslint.enable": true, //是否开启vscode的eslint
-    "tslint.enable": false,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },

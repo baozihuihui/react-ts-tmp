@@ -3,7 +3,7 @@
 import * as React from 'react'
 import {Button, Input} from 'antd'
 import * as _ from 'lodash'
-// import * as styles from './index.less'
+import * as styles from './index.less'
 
 interface IProps {
     name: string
@@ -30,6 +30,7 @@ export default class Hello extends React.Component<IProps, IState> {
         // console.log(styles.cssExports.test)
         return (
             <>
+                <div className={styles.test}>{`hello,${this.props.name}`}</div>
                 <div>{`hello,${this.props.name}`}</div>
                 <div>counter:{this.state.count}</div>
                 <div>less test! display:none</div>
