@@ -4,6 +4,7 @@ import * as React from 'react'
 import {Button, Input} from 'antd'
 import * as _ from 'lodash'
 import * as styles from './index.less'
+import IconFont from '../../common/components/IconFonts'
 
 interface IProps {
     name: string
@@ -11,11 +12,13 @@ interface IProps {
 
 interface IState {
     count: number
+    iconFontShowFlag: boolean
 }
 
 export default class Hello extends React.Component<IProps, IState> {
-    state: IState = {
+    state = {
         count: 0,
+        iconFontShowFlag: true,
     }
 
     handleAddBtnClick = () => {
@@ -26,13 +29,30 @@ export default class Hello extends React.Component<IProps, IState> {
         this.setState(state => ({count: state.count - 1}))
     }
 
+    handleIconFontShow = () => {
+        this.setState(state => ({
+            iconFontShowFlag: !state.iconFontShowFlag,
+        }))
+    }
+
     render() {
-        console.log(styles)
         return (
             <>
                 <div>{`hello,${this.props.name}`}</div>
                 <div>counter:{this.state.count}</div>
-                <div className={styles.test}>less test! display:block,hover:red </div>
+                <span className={styles.test}>less test! display:block,hover:red </span>
+                <p>
+                    {this.state.iconFontShowFlag && <span>测试Iconfonts的引入</span>}
+                    <Button
+                        type="primary"
+                        shape="circle"
+                        onClick={this.handleIconFontShow}
+                        icon={
+                            <IconFont type={this.state.iconFontShowFlag ? 'kejian' : 'bukejian'} />
+                        }
+                    />
+                </p>
+
                 <Button onClick={this.handleAddBtnClick} type="primary">
                     +1
                 </Button>

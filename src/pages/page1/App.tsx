@@ -1,7 +1,8 @@
 /** @format */
 
 import * as React from 'react'
-import ErrorBoundry from '../../ErrorBoundary'
+import '../../assest/iconfont/iconfont.css'
+import ErrorBoundry from '../../common/components/ErrorBoundary'
 import Helle from '../../view/Hello'
 
 export default class App extends React.Component {

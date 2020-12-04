@@ -13,23 +13,17 @@ module.exports = {
             // 图片文件
             {
                 test: loader.loaderRegx.imgRegx,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            // outputPath:'../',//输出**文件夹
-                            publicPath: '/',
-                            name: 'images/[name].[ext]',
-                            limit: 1000, //是把小于1000B的文件打成Base64的格式，写入JS
-                        },
-                    },
-                ],
+                use: loader.getUrlLoader('img'),
             },
             // 文字文件
             {
-                test: loader.loaderRegx.fileRegx,
-                exclude: loader.loaderRegx.nodeModulesRegx,
-                use: 'url-loader',
+                test: loader.loaderRegx.fontsRegx,
+                use: loader.getUrlLoader('fonts'),
+            },
+            // 视频/音频 文件
+            {
+                test: loader.loaderRegx.mediaRegx,
+                use: loader.getUrlLoader('media'),
             },
             // js 文件
             {
@@ -37,7 +31,7 @@ module.exports = {
                 exclude: /(node_modules|dist)/,
                 use: loader.babelLoader,
             },
-            // tsx 文件
+            // ts/tsx 文件
             {
                 test: loader.loaderRegx.tsxRegx,
                 exclude: loader.loaderRegx.nodeModulesRegx,
