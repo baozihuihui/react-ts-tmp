@@ -1,8 +1,15 @@
-import * as React from "react";
-import Helle from "../../view/Hello";
+/** @format */
+
+import * as React from 'react'
+import ErrorBoundry from '../../ErrorBoundary'
+import Helle from '../../view/Hello'
 
 export default class App extends React.Component {
-  render() {
-    return <Helle name={"coder"} />;
-  }
+    render() {
+        return (
+            <ErrorBoundry>
+                <Helle name={'coder'} />
+            </ErrorBoundry>
+        )
+    }
 }

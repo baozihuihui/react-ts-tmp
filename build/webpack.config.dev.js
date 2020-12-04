@@ -25,5 +25,6 @@ module.exports = {
             inject: true,
         }),
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.WatchIgnorePlugin([/less\.d\.ts$/]),
     ],
 }

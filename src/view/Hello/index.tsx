@@ -32,7 +32,7 @@ export default class Hello extends React.Component<IProps, IState> {
             <>
                 <div>{`hello,${this.props.name}`}</div>
                 <div>counter:{this.state.count}</div>
-                <div className={styles.test}>less test! display:none </div>
+                <div className={styles.test}>less test! display:block,hover:red </div>
                 <Button onClick={this.handleAddBtnClick} type="primary">
                     +1
                 </Button>

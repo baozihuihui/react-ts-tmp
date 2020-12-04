@@ -4,7 +4,9 @@
 // Please do not change this file!
 declare namespace IndexLessNamespace {
     export interface IIndexLess {
-        test: string
+        content: string
+        page: string
+        title: string
     }
 }
 

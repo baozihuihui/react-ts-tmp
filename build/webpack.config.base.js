@@ -1,7 +1,7 @@
 /** @format */
 var LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
-const util = require('./util')
+const {loader} = require('./util')
 
 module.exports = {
     resolve: {
@@ -12,7 +12,7 @@ module.exports = {
             // loader use数组 是逆序使用
             // 图片文件
             {
-                test: /\.(png|jpg|gif)$/,
+                test: loader.loaderRegx.imgRegx,
                 use: [
                     {
                         loader: 'url-loader',
@@ -27,30 +27,30 @@ module.exports = {
             },
             // 文字文件
             {
-                test: /\.(woff|svg|eot|woff2|tff)$/,
-                exclude: /node_modules/,
+                test: loader.loaderRegx.fileRegx,
+                exclude: loader.loaderRegx.nodeModulesRegx,
                 use: 'url-loader',
             },
             // js 文件
             {
-                test: /\.js$/,
+                test: loader.loaderRegx.jsRegx,
                 exclude: /(node_modules|dist)/,
-                use: util.loaders.babelLoader,
+                use: loader.babelLoader,
             },
             // tsx 文件
             {
-                test: /\.tsx?$/,
-                exclude: /node_modules/,
-                use: [util.loaders.babelLoader, util.loaders.tsLoader],
+                test: loader.loaderRegx.tsxRegx,
+                exclude: loader.loaderRegx.nodeModulesRegx,
+                use: [loader.babelLoader, loader.tsLoader],
             },
             // css less cssModule
             // src css
             {
-                test: /\.css$/,
-                exclude: /node_modules/, // exclude antd default style
+                test: loader.loaderRegx.cssRegx,
+                exclude: loader.loaderRegx.nodeModulesRegx, // exclude antd default style
                 use: [
-                    util.loaders.styleLoader,
-                    util.loaders.getcssLoader({
+                    loader.styleLoader,
+                    loader.getcssLoader({
                         importLoaders: 1,
                     }),
                 ],
@@ -58,30 +58,32 @@ module.exports = {
             },
             // src less
             {
-                test: /\.less$/,
-                exclude: /node_modules/, // exclude antd default style
+                test: loader.loaderRegx.lessRegx,
+                exclude: loader.loaderRegx.nodeModulesRegx, // exclude antd default style
                 use: [
-                    util.loaders.styleLoader,
-                    '@teamsupercell/typings-for-css-modules-loader',
-                    util.loaders.getcssLoader({
-                        modules: true,
+                    loader.styleLoader,
+                    loader.typingsForCssModulesLoader,
+                    loader.getcssLoader({
+                        modules: {
+                            localIdentName: '[local]_[hash:base64:5]',
+                        },
                         importLoaders: 2,
                     }),
-                    util.loaders.postcssLoader,
-                    util.loaders.lessLoader,
+                    loader.postcssLoader,
+                    loader.lessLoader,
                 ],
             },
             //  /node-modules antd 不支持模块化
             {
-                test: /\.less$/,
-                include: /node_modules/, // parse antd style , no css modules option
+                test: loader.loaderRegx.lessRegx,
+                include: loader.loaderRegx.nodeModulesRegx, // parse antd style , no css modules option
                 use: [
-                    util.loaders.styleLoader,
-                    util.loaders.getcssLoader({
+                    loader.styleLoader,
+                    loader.getcssLoader({
                         importLoaders: 2,
                     }),
-                    util.loaders.postcssLoader,
-                    util.loaders.lessLoader,
+                    loader.postcssLoader,
+                    loader.lessLoader,
                 ],
             },
         ],
