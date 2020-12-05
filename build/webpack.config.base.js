@@ -37,49 +37,6 @@ module.exports = {
                 exclude: loader.loaderRegx.nodeModulesRegx,
                 use: [loader.babelLoader, loader.tsLoader],
             },
-            // css less cssModule
-            // src css
-            {
-                test: loader.loaderRegx.cssRegx,
-                exclude: loader.loaderRegx.nodeModulesRegx, // exclude antd default style
-                use: [
-                    loader.styleLoader,
-                    loader.getcssLoader({
-                        importLoaders: 1,
-                    }),
-                ],
-                sideEffects: true,
-            },
-            // src less
-            {
-                test: loader.loaderRegx.lessRegx,
-                exclude: loader.loaderRegx.nodeModulesRegx, // exclude antd default style
-                use: [
-                    loader.styleLoader,
-                    loader.typingsForCssModulesLoader,
-                    loader.getcssLoader({
-                        modules: {
-                            localIdentName: '[local]_[hash:base64:5]',
-                        },
-                        importLoaders: 2,
-                    }),
-                    loader.postcssLoader,
-                    loader.lessLoader,
-                ],
-            },
-            //  /node-modules antd 不支持模块化
-            {
-                test: loader.loaderRegx.lessRegx,
-                include: loader.loaderRegx.nodeModulesRegx, // parse antd style , no css modules option
-                use: [
-                    loader.styleLoader,
-                    loader.getcssLoader({
-                        importLoaders: 2,
-                    }),
-                    loader.postcssLoader,
-                    loader.lessLoader,
-                ],
-            },
         ],
     },
     optimization: {

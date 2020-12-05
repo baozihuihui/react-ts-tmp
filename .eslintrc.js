@@ -1,4 +1,6 @@
-/** @format */
+/** @format
+ * eslint  配置在这里
+ */
 
 module.exports = {
     parser: '@typescript-eslint/parser', //定义ESLint的解析器
@@ -6,6 +8,7 @@ module.exports = {
     plugins: ['@typescript-eslint'], //定义了该eslint文件所依赖的插件
     env: {
         //指定代码的运行环境
+        es6: true,
         browser: true,
         node: true,
     },
@@ -24,5 +27,10 @@ module.exports = {
             jsx: true,
         },
     },
-    rules: {},
+    rules: {
+        'no-console': 'warn', // 使用console 抛出警告
+        'no-use-before-define': 'off', // 在变量定义之前使用它们 react-script 和 eslint 有版本冲突，需要关闭
+        'block-scoped-var': 'error', // 强制把变量的使用限制在其定义的作用域范围内
+        'no-shadow': 'error', // 禁止变量声明与外层作用域的变量同名
+    },
 }

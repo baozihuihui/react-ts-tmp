@@ -1,6 +1,6 @@
 /** @format */
 
-import * as React from 'react'
+import React, {Component} from 'react'
 import {Button, Input} from 'antd'
 import * as _ from 'lodash'
 import * as styles from './index.less'
@@ -15,7 +15,7 @@ interface IState {
     iconFontShowFlag: boolean
 }
 
-export default class Hello extends React.Component<IProps, IState> {
+export default class Hello extends Component<IProps, IState> {
     state = {
         count: 0,
         iconFontShowFlag: true,

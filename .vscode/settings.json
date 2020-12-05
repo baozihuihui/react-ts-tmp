@@ -1,17 +1,33 @@
 {
+    // VS Code 配置想写在这里
+    // 格式化工具 prettier
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // 保存后自动格式化
     "editor.formatOnSave": true,
+    // 关掉markdown保存格式化
+    "[markdown]": {
+        "editor.formatOnSave": false
+    },
+    // 格式化 需要配合的 linters
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": true, // 保存后检查eslint规则
+        "source.fixAll.stylelint": true // 保存后检查stylelint规则
     },
-    "eslint.options": { //指定vscode的eslint所处理的文件的后缀
-        "extensions": [
-            ".js",
-            ".ts",
-            ".tsx"
-        ]
+    //指定vscode的eslint所处理的文件的后缀
+    "eslint.options": {
+        "extensions": [".js", ".ts", ".tsx"]
     },
+    // eslint 忽略的文件
     "eslint.exclude": "**/node_modules/**/*,**/.history/**",
+
+    // vsCode 忽略不展示文件
     "files.exclude": {
         "**/*.less.d.ts": true
     },
+    // eslint 校验
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+    // ts 版本
+    "typescript.tsdk": "node_modules/typescript/lib",
+    // jest 自动
+    "jest.autoEnable": false
 }
