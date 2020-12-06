@@ -2,13 +2,13 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import { actions, asyncActions } from './action'
 import { ContextStatus } from './constant'
 
-interface IReduxTetsStore {
+export interface IState {
 	contextStatus: ContextStatus
 	context?: string
 	counter: number
 }
 
-export const INIT_STATE: IReduxTetsStore = {
+export const INIT_STATE: IState = {
 	contextStatus: ContextStatus.NONE,
 	counter: 0,
 }

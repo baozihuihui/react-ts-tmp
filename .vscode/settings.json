@@ -25,7 +25,7 @@
 
 	// vsCode 忽略不展示文件
 	"files.exclude": {
-		"**/*.less.d.ts": true
+		// "**/*.less.d.ts": true
 	},
 	// eslint 校验
 	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],

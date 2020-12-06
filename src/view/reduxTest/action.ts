@@ -1,5 +1,4 @@
 import { actionCreatorFactory } from 'typescript-fsa'
-import {} from 'typescript-fsa-redux-saga'
 
 // actions 类型
 const actionTypes = {
