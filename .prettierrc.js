@@ -1,6 +1,4 @@
-/** @format
- * 代码格式化 配置在这里
- */
+/** @format 代码格式化 配置在这里*/
 
 module.exports = {
 	printWidth: 100, // 多长的文本换行，html与js超过字符长度，都会换行

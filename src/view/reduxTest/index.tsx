@@ -2,14 +2,14 @@
 
 import React from 'react'
 
-export type IProps = {}
+interface IProps {}
 
-export interface IState {}
+interface IState {}
 
 export default class Banner extends React.Component<IProps, IState> {
-    state: IState = {}
+	state: IState = {}
 
-    render() {
-        return <></>
-    }
+	render() {
+		return <></>
+	}
 }
