@@ -4,7 +4,7 @@
  * 例如：theme / userInfo
  * 如果需要状态管理的只是在一个模块或一组模块间的，那么最好放到模块的父级进行管理。不要放到这里。
  * */
-import { combineReducers, createStore } from 'redux'
+import { combineReducers } from 'redux'
 import {
 	reducer as ReduxTestReducer,
 	IState as IReduxTestState,
@@ -17,5 +17,3 @@ export interface IGlobalState {
 export const globalReducer = combineReducers<IGlobalState>({
 	reduxTest: ReduxTestReducer,
 })
-
-export const globalStore = createStore(globalReducer)

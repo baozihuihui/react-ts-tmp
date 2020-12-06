@@ -6,15 +6,18 @@ import { Provider } from 'react-redux'
 import '../../assest/iconfont/iconfont.css'
 // 引入顶层错误边界
 import ErrorBoundry from '../../common/components/ErrorBoundary'
-import { globalStore } from './redux/reducer'
 import Helle from '../../view/hello'
+import ReduxTest from '../../view/reduxTest'
+import configureStore from './redux/redux'
 
 export default class App extends React.Component {
+	store = configureStore()
 	render() {
 		return (
 			<ErrorBoundry>
-				<Provider store={globalStore}>
+				<Provider store={this.store}>
 					<Helle name={'coder'} />
+					<ReduxTest />
 				</Provider>
 			</ErrorBoundry>
 		)
