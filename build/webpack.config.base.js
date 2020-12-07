@@ -1,11 +1,19 @@
 /** @format */
 var LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
-const { loader } = require('./util')
+const path = require('path')
+const { getResloveAlias, loader } = require('./util')
 
 module.exports = {
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],
+		// 路径映射别名 保持与 tsConfig中path 一致
+		alias: {
+			'@assest': getResloveAlias('./src/assest'),
+			'@common': getResloveAlias('./src/common'),
+			'@view': getResloveAlias('./src/view'),
+			'@pages': getResloveAlias('./src/pages'),
+		},
 	},
 	module: {
 		rules: [

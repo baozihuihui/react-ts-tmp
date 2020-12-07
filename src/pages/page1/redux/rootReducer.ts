@@ -5,10 +5,7 @@
  * 如果需要状态管理的只是在一个模块或一组模块间的，那么最好放到模块的父级进行管理。不要放到这里。
  * */
 import { combineReducers } from 'redux'
-import {
-	reducer as ReduxTestReducer,
-	IState as IReduxTestState,
-} from '../../../view/reduxTest/reducer'
+import { reducer as ReduxTestReducer, IState as IReduxTestState } from '@view/reduxTest/reducer'
 
 export interface IGlobalState {
 	reduxTest: IReduxTestState

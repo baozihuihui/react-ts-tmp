@@ -3,7 +3,7 @@
  * */
 
 import { all, fork } from 'redux-saga/effects'
-import { saga as ReduxTestSaga } from '../../../view/reduxTest/saga'
+import { saga as ReduxTestSaga } from '@view/reduxTest/saga'
 
 const globalSaga = function* () {
 	yield all([fork(ReduxTestSaga)])

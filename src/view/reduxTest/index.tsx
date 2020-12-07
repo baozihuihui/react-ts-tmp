@@ -1,7 +1,7 @@
 /** @format */
 
 import React from 'react'
-import { IGlobalState } from '../../pages/page1/redux/rootReducer'
+import { IGlobalState } from '@pages/page1/redux/rootReducer'
 import { connect } from 'react-redux'
 import { IState as reduxTestState } from './reducer'
 import { bindActionCreators } from 'redux'
