@@ -8,7 +8,7 @@ import '../../assest/iconfont/iconfont.css'
 import ErrorBoundry from '../../common/components/ErrorBoundary'
 import Helle from '../../view/hello'
 import ReduxTest from '../../view/reduxTest'
-import configureStore from './redux/redux'
+import configureStore from './redux/rootRedux'
 
 export default class App extends React.Component {
 	store = configureStore()

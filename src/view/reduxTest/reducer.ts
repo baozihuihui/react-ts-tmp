@@ -20,12 +20,12 @@ export const reducer = reducerWithInitialState(INIT_STATE)
 	.case(actions.subConter, (state, payload) => {
 		return { ...state, counter: state.counter - payload }
 	})
-	.case(asyncActions.getContext.started, state => {
+	.case(asyncActions.getContextAsync.started, state => {
 		return { ...state, contextStatus: ContextStatus.LOADING }
 	})
-	.case(asyncActions.getContext.failed, state => {
+	.case(asyncActions.getContextAsync.failed, state => {
 		return { ...state, preContext: ContextStatus.ERROR }
 	})
-	.case(asyncActions.getContext.done, (state, payload) => {
+	.case(asyncActions.getContextAsync.done, (state, payload) => {
 		return { ...state, preContext: ContextStatus.SUCCESS, context: payload.result }
 	})

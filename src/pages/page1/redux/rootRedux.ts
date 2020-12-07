@@ -5,7 +5,8 @@
 import { applyMiddleware, compose, createStore, StoreEnhancer } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
-import { IGlobalState, globalReducer } from './reducer'
+import { IGlobalState, globalReducer } from './rootReducer'
+import globaSaga from './rootSaga'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -22,7 +23,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const configureStore = () => {
-	return createStore<IGlobalState, any, any, any>(globalReducer, enhancer)
+	const store = createStore<IGlobalState, any, any, any>(globalReducer, enhancer)
+	sagaMiddleware.run(globaSaga)
+	return store
 }
 
 export default configureStore
