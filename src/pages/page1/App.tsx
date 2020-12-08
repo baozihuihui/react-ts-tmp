@@ -8,7 +8,7 @@ import '@assest/iconfont/iconfont.css'
 import ErrorBoundry from '@common/components/ErrorBoundary'
 import configureStore from './redux/rootRedux'
 import routeInfos, { defaultPath } from './router/route.config'
-import RouteRoot from '@common/components/RouteRoot'
+import RouteRoot from '@common/components/Route/root'
 export default class App extends React.Component {
 	store = configureStore()
 	render() {

@@ -1,8 +1,8 @@
 /** @format */
 
+import Exception from '@common/layout/exception'
 import { Collapse } from 'antd'
 import React, { Component, ErrorInfo } from 'react'
-import * as styles from './index.less'
 
 interface IState {
 	errorFlag: boolean
@@ -28,11 +28,9 @@ export default class ErrorBoundary extends Component<{}, IState> {
 	render() {
 		if (this.state.errorFlag) {
 			return (
-				<section className={styles.page}>
-					<h1 className={styles.title}>500</h1>
-					<div className={styles.content}>
-						页面加载异常，请使用最新版本谷歌浏览器后重试！
-					</div>
+				<Exception
+					errorCode={'500'}
+					context={'页面加载异常，请使用最新版本谷歌浏览器后重试！'}>
 					<Collapse style={{ width: 800 }} accordion={true}>
 						<Collapse.Panel header='错误信息' key='1'>
 							<div
@@ -59,7 +57,7 @@ export default class ErrorBoundary extends Component<{}, IState> {
 							</div>
 						</Collapse.Panel>
 					</Collapse>
-				</section>
+				</Exception>
 			)
 		} else {
 			return this.props.children

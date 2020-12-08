@@ -82,6 +82,6 @@ module.exports = {
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 		// 重建编译less会变慢
-		new webpack.WatchIgnorePlugin([/less\.d\.ts$/]),
+		// new webpack.WatchIgnorePlugin([/less\.d\.ts$/]),
 	],
 }
