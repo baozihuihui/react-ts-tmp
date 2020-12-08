@@ -1,7 +1,7 @@
 import { IRouteInfo } from '@common/interface/components/route'
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import getComponentByPath from './route'
+import getComponentByFileDir from './route'
 interface IRouteRoot {
 	routeInfos: IRouteInfo[]
 }
@@ -9,7 +9,7 @@ interface IRouteRoot {
 export default function RouteRoot(props: IRouteRoot) {
 	const lazyComponents = props.routeInfos.map(routeInfo => ({
 		routeInfo,
-		component: getComponentByPath(routeInfo),
+		component: getComponentByFileDir(routeInfo),
 	}))
 
 	return (

@@ -1,7 +1,8 @@
 import { delay, put, takeEvery } from 'redux-saga/effects'
 import { Action } from 'typescript-fsa'
 // import { takeAsyncAction } from 'src/common/functions/takeAsyncAction'
-import { actions, asyncActions } from './action'
+// import { actions, asyncActions } from './action'
+import { actions } from './action'
 
 function* addCounterWithSaga(action: Action<number>) {
 	yield delay(1000)
