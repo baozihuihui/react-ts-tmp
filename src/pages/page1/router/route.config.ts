@@ -1,5 +1,7 @@
 import { IRouteInfo } from '@common/interface/components/route'
 
+export const defaultPath = '/hello'
+
 const RoutesInfos: IRouteInfo[] = [
 	{
 		name: 'Hello',

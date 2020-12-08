@@ -3,6 +3,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import getComponentByFileDir from './route'
 interface IRouteRoot {
+	defaultPath: string
 	routeInfos: IRouteInfo[]
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import loadable from '@loadable/component'
 import { IRouteInfo } from '@common/interface/components/route'
-import Loadding from './Loadding'
+import Loadding from '../Loadding'
 import pMinDelay from 'p-min-delay'
 
 function getComponentByFileDir(routeInfo: IRouteInfo) {
@@ -10,6 +10,7 @@ function getComponentByFileDir(routeInfo: IRouteInfo) {
 		() =>
 			// 减少刷新造成的加载
 			pMinDelay(
+				// 动态加载
 				import(
 					/* webpackInclude: /\.tsx$/ */
 					/* webpackExclude: /\.d\.ts$/ */
