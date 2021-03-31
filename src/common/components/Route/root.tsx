@@ -17,7 +17,12 @@ export default function RouteRoot(props: IRouteRoot) {
 		<Router>
 			<Switch>
 				{lazyComponents.map(({ routeInfo, component }) => (
-					<Route key={routeInfo.name} path={routeInfo.path} component={component} />
+					<Route
+						key={routeInfo.name}
+						path={routeInfo.path}
+						component={component}
+						exact={routeInfo.isExact}
+					/>
 				))}
 			</Switch>
 		</Router>

@@ -6,6 +6,13 @@ const RoutesInfos: IRouteInfo[] = [
 	{
 		name: 'Hello',
 		cnName: 'Hello',
+		path: '/',
+		fileDir: 'Hello',
+		isExact: true,
+	},
+	{
+		name: 'Hello',
+		cnName: 'Hello',
 		path: '/hello',
 		fileDir: 'Hello',
 		isExact: true,
