@@ -8,14 +8,18 @@ const RoutesInfos: IRouteInfo[] = [
 		cnName: 'Hello',
 		path: '/',
 		fileDir: 'Hello',
-		isExact: true,
 	},
 	{
 		name: 'Hello',
 		cnName: 'Hello',
 		path: '/hello',
 		fileDir: 'Hello',
-		isExact: true,
+	},
+	{
+		name: 'Hello',
+		cnName: 'Hello',
+		path: '/hello/reduxTest',
+		fileDir: 'ReduxTest',
 	},
 	{
 		name: 'ReduxTest',

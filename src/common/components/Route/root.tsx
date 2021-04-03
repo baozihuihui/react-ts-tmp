@@ -1,6 +1,6 @@
 import { IRouteInfo } from '@common/interface/components/route'
 import React from 'react'
-import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import NotFound from './ExceptionRoute/NotFound'
 import getComponentByFileDir from './route'
 interface IRouteRoot {

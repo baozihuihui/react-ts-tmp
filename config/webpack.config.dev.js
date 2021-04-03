@@ -11,6 +11,9 @@ module.exports = {
 	mode: 'development',
 	// 入口文件 ，若多入口，则数组表示多个入口
 	entry: ['./src/pages/page1/index.dev.tsx'],
+	output: {
+		publicPath: '/', // app.js => /app.js for H5 HistoryAPI staticPath
+	},
 	// 开发环境我们只添加  忽略列信息的ts源码的sourcemap
 	devtool: 'cheap-module-eval-source-map',
 	// 本地服务器
@@ -23,7 +26,7 @@ module.exports = {
 		stats: {
 			colors: true,
 		},
-		historyApiFallback: true,
+		historyApiFallback: true, // H5 historyAPI
 	},
 	// 引用的loader
 	module: {
