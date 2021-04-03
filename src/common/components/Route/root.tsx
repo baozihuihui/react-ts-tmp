@@ -1,6 +1,7 @@
 import { IRouteInfo } from '@common/interface/components/route'
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import NotFound from './ExceptionRoute/NotFound'
 import getComponentByFileDir from './route'
 interface IRouteRoot {
 	defaultPath: string
@@ -21,9 +22,10 @@ export default function RouteRoot(props: IRouteRoot) {
 						key={routeInfo.name}
 						path={routeInfo.path}
 						component={component}
-						exact={routeInfo.isExact}
+						exact={routeInfo.notExact ? false : true}
 					/>
 				))}
+				<NotFound />
 			</Switch>
 		</Router>
 	)
