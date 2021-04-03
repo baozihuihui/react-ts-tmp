@@ -1,7 +1,7 @@
 import Exception from '@common/components/Exception'
 import React from 'react'
 
-const NotFount: React.FC = () => {
+const Forbidden: React.FC = () => {
 	return (
 		<>
 			<Exception errorCode={'404'} context={'未找到页面，请返回上一页！'} />
@@ -9,4 +9,4 @@ const NotFount: React.FC = () => {
 	)
 }
 
-export default NotFount
+export default Forbidden

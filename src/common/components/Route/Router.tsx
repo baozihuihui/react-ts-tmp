@@ -1,7 +1,6 @@
 import { IRouteInfo } from '@common/interface/components/route'
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import NotFound from './ExceptionRoute/NotFound'
 import lazyLoadComponentByFileDir from './lazyLoad'
 interface IRouteRoot {
 	defaultPath: string
@@ -25,7 +24,6 @@ export default function ReactRoute(props: IRouteRoot) {
 						exact={routeInfo.notExact ? false : true}
 					/>
 				))}
-				<NotFound />
 			</Switch>
 		</Router>
 	)
