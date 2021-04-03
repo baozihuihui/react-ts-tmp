@@ -1,4 +1,4 @@
-import Exception from '@common/layout/exception'
+import Exception from '@common/components/Exception'
 import React from 'react'
 
 const NotFount: React.FC = () => {

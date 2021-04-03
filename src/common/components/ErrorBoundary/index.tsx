@@ -1,6 +1,6 @@
 /** @format */
 
-import Exception from '@common/layout/exception'
+import Exception from '@common/components/Exception'
 import { Collapse } from 'antd'
 import React, { Component, ErrorInfo } from 'react'
 

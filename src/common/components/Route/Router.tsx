@@ -2,16 +2,16 @@ import { IRouteInfo } from '@common/interface/components/route'
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import NotFound from './ExceptionRoute/NotFound'
-import getComponentByFileDir from './route'
+import lazyLoadComponentByFileDir from './lazyLoad'
 interface IRouteRoot {
 	defaultPath: string
 	routeInfos: IRouteInfo[]
 }
 
-export default function RouteRoot(props: IRouteRoot) {
+export default function ReactRoute(props: IRouteRoot) {
 	const lazyComponents = props.routeInfos.map(routeInfo => ({
 		routeInfo,
-		component: getComponentByFileDir(routeInfo),
+		component: lazyLoadComponentByFileDir(routeInfo),
 	}))
 
 	return (

@@ -4,7 +4,7 @@ import { IRouteInfo } from '@common/interface/components/route'
 import Loadding from '../Loadding'
 import pMinDelay from 'p-min-delay'
 
-function getComponentByFileDir(routeInfo: IRouteInfo) {
+function lazyLoadComponentByFileDir(routeInfo: IRouteInfo) {
 	return loadable(
 		// 动态加载
 		() =>
@@ -25,4 +25,4 @@ function getComponentByFileDir(routeInfo: IRouteInfo) {
 	)
 }
 
-export default getComponentByFileDir
+export default lazyLoadComponentByFileDir

@@ -8,14 +8,14 @@ import '@assest/iconfont/iconfont.css'
 import ErrorBoundry from '@common/components/ErrorBoundary'
 import configureStore from './redux/rootRedux'
 import routeInfos, { defaultPath } from './router/route.config'
-import RouteRoot from '@common/components/Route/root'
+import ReactRouter from '@common/components/Route/Router'
 export default class App extends React.Component {
 	store = configureStore()
 	render() {
 		return (
 			<ErrorBoundry>
 				<Provider store={this.store}>
-					<RouteRoot routeInfos={routeInfos} defaultPath={defaultPath} />
+					<ReactRouter routeInfos={routeInfos} defaultPath={defaultPath} />
 				</Provider>
 			</ErrorBoundry>
 		)
