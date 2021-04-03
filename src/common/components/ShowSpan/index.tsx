@@ -6,11 +6,12 @@ const defaultNumberEmptyValue = '-'
 interface IShowSpanProps {
 	value: string | number | null | undefined
 	emptyValue?: '' | '-' | '无' | '空'
-	className: string
+	className?: string
+	style?: React.CSSProperties
 }
 
 const ShowSpan = (props: IShowSpanProps) => {
-	const { value, className, emptyValue } = props
+	const { value, className, style, emptyValue } = props
 	const valueType = typeof value
 	let result: string | number
 	let emptyValueWithType: string
@@ -27,7 +28,11 @@ const ShowSpan = (props: IShowSpanProps) => {
 	}
 	result = value || emptyValueWithType
 
-	return <span className={className}>{result}</span>
+	return (
+		<span className={className} style={style}>
+			{result}
+		</span>
+	)
 }
 
 export default React.memo(ShowSpan)
