@@ -9,6 +9,7 @@ import { actions } from './action'
 import { Button, Input } from 'antd'
 
 interface IStateProps {
+	pathname: string
 	reduxTest: reduxTestState
 }
 
@@ -25,6 +26,11 @@ interface IState {
 class Banner extends React.Component<IProps, IState> {
 	state: IState = {
 		offset: 1,
+	}
+
+	componentDidMount() {
+		// eslint-disable-next-line no-console
+		console.log(this.props.pathname)
 	}
 
 	handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,6 +69,7 @@ class Banner extends React.Component<IProps, IState> {
 
 export default connect(
 	(state: IGlobalState) => ({
+		pathname: state.router.location.pathname,
 		reduxTest: state.reduxTest,
 	}),
 	dispatch => ({

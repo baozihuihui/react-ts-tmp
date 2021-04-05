@@ -7,3 +7,8 @@ export interface IRouteInfo {
 	isMemory?: true // 对应组件是否需要缓存
 	notExact?: true // 不使用全匹配
 }
+
+export interface IRouteRoot {
+	defaultPath: string
+	routeInfos: IRouteInfo[]
+}

@@ -1,17 +1,19 @@
-import { IRouteInfo } from '@common/interface/components/route'
-import React from 'react'
+import { IRouteRoot } from '@common/interface/components/route'
+import React, { useMemo } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import lazyLoadComponentByFileDir from './lazyLoad'
-interface IRouteRoot {
-	defaultPath: string
-	routeInfos: IRouteInfo[]
-}
 
 export default function ReactRoute(props: IRouteRoot) {
-	const lazyComponents = props.routeInfos.map(routeInfo => ({
-		routeInfo,
-		component: lazyLoadComponentByFileDir(routeInfo),
-	}))
+	const { routeInfos } = props
+	// useMemo
+	const lazyComponents = useMemo(
+		() =>
+			routeInfos.map(routeInfo => ({
+				routeInfo,
+				component: lazyLoadComponentByFileDir(routeInfo),
+			})),
+		[routeInfos],
+	)
 
 	return (
 		<Router>
