@@ -5,12 +5,17 @@
  * 如果需要状态管理的只是在一个模块或一组模块间的，那么最好放到模块的父级进行管理。不要放到这里。
  * */
 import { combineReducers } from 'redux'
+import { History } from 'history'
+import { connectRouter, RouterState } from 'connected-react-router'
 import { reducer as ReduxTestReducer, IState as IReduxTestState } from '@view/ReduxTest/reducer'
 
 export interface IGlobalState {
+	router: RouterState
 	reduxTest: IReduxTestState
 }
 
-export const globalReducer = combineReducers<IGlobalState>({
-	reduxTest: ReduxTestReducer,
-})
+export const globalReducer = (history: History) =>
+	combineReducers<IGlobalState>({
+		router: connectRouter(history),
+		reduxTest: ReduxTestReducer,
+	})
