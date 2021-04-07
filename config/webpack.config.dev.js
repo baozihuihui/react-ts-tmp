@@ -82,6 +82,7 @@ module.exports = {
 			template: 'public/index.html',
 			filename: 'index.html',
 			inject: true,
+			favicon: 'public/favicon.ico',
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 		// 重建编译less会变慢
