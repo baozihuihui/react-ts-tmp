@@ -5,12 +5,8 @@
 	"[typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	// 保存后自动格式化
+	// 关闭 保存后自动格式化
 	"editor.formatOnSave": false,
-	// 关掉markdown保存格式化
-	"[markdown]": {
-		"editor.formatOnSave": false
-	},
 	// 格式化 需要配合的 linters
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true, // 保存后检查eslint规则
@@ -22,7 +18,6 @@
 	},
 	// eslint 忽略的文件
 	"eslint.exclude": "**/node_modules/**/*,**/.history/**",
-
 	// vsCode 忽略不展示文件
 	"files.exclude": {
 		"**/*.less.d.ts": true
