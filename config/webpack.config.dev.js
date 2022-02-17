@@ -27,6 +27,7 @@ module.exports = {
 			colors: true,
 		},
 		historyApiFallback: true, // H5 historyAPI
+		disableHostCheck: true, // 启动的项目配置host 允许访问
 	},
 	// 引用的loader
 	module: {
