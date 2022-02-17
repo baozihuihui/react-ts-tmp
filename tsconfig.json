@@ -46,7 +46,7 @@
 		"baseUrl": "." /* Base directory to resolve non-absolute module names. */,
 		"paths": {
 			"@common/*": ["src/common/*"],
-			"@assest/*": ["src/common/*"],
+			"@assest/*": ["src/assest/*"],
 			"@view/*": ["src/view/*"],
 			"@pages/*": ["src/pages/*"]
 		} /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */,

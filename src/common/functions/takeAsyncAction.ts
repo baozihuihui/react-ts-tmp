@@ -31,7 +31,7 @@ export function takeAsyncAction<P, S, E>(
 			const res: AxiosResponse = yield call(asyncCall, params)
 			yield put(asyncAction.done({ params, result: res.data }))
 		} catch (e) {
-			yield put(asyncAction.failed({ params, error: e }))
+			yield put(asyncAction.failed({ params, error: e as any }))
 		} finally {
 			if (yield cancelled()) {
 				yield put(asyncAction.failed({ params, error: 'cancel' as any }))

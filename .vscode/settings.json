@@ -6,7 +6,7 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	// 保存后自动格式化
-	"editor.formatOnSave": true,
+	"editor.formatOnSave": false,
 	// 关掉markdown保存格式化
 	"[markdown]": {
 		"editor.formatOnSave": false
