@@ -1,7 +1,7 @@
 import { BaseURL } from '@common/constant/api'
 import { IResponse } from '@common/interface/axios'
 import { message } from 'antd'
-import axios, { ResponseType } from 'axios'
+import axios, { AxiosRequestHeaders, ResponseType } from 'axios'
 import { AxiosRequestConfig } from 'axios'
 
 message.config({
@@ -57,15 +57,19 @@ export const getAxiosConfig = (url: BaseURL, otherConfigs?: IOtherConfigs): Axio
 		isResponseBlob = otherConfigs.isResponseBlob
 		customTimeout = otherConfigs.customTimeout
 	}
+	let header: any = {}
+	if (isFormSubmit) {
+		header['content-type'] = 'multipart/form-data'
+	} else {
+		header['X-Requested-With'] = 'XMLHttpRequest'
+	}
 	return Object.assign(
 		{},
 		{
 			url: '',
 			baseURL: url,
 			isResponseBlob,
-			headers: isFormSubmit
-				? { 'content-type': 'multipart/form-data' }
-				: { 'X-Requested-With': 'XMLHttpRequest' },
+			headers: header,
 			timeout: customTimeout || (isFormSubmit ? 0 : 30000),
 			transformResponse: [transformResponse],
 			responseType: (isResponseBlob ? 'blob' : 'json') as ResponseType,
