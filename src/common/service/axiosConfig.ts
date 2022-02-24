@@ -1,7 +1,7 @@
 import { BaseURL } from '@common/constant/api'
 import { IResponse } from '@common/interface/axios'
 import { message } from 'antd'
-import axios, { AxiosRequestHeaders, ResponseType } from 'axios'
+import axios, { ResponseType } from 'axios'
 import { AxiosRequestConfig } from 'axios'
 
 message.config({
