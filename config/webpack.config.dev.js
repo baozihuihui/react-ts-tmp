@@ -12,7 +12,7 @@ module.exports = {
 	// 入口文件 ，若多入口，则数组表示多个入口
 	entry: ['./src/pages/page1/index.dev.tsx'],
 	output: {
-		publicPath: path.join(__dirname, '/'), // app.js => /app.js for H5 HistoryAPI staticPath
+		publicPath: '/', // app.js => /app.js for H5 HistoryAPI staticPath
 	},
 	// 开发环境我们只添加  忽略列信息的ts源码的sourcemap
 	devtool: 'eval-source-map',
@@ -20,7 +20,7 @@ module.exports = {
 	devServer: {
 		// 静态资源访问配置
 		static: {
-			directory: path.join(__dirname, '/'),
+			directory: '/',
 		},
 		client: {
 			logging: 'info', // log 打印类型
