@@ -12,7 +12,7 @@ const { loader } = require('./util')
 module.exports = {
 	mode: 'production',
 	entry: './src/pages/page1/index.tsx',
-	devtool: 'cheap-module-eval-source-map',
+	devtool: 'eval-cheap-source-map',
 	// 输出文件位置
 	output: {
 		path: path.join(__dirname, '../dist'),
