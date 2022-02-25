@@ -71,18 +71,6 @@ const getcssLoader = options => ({
 // 为css 添加前缀
 const postcssLoader = {
 	loader: 'postcss-loader',
-	options: {
-		ident: 'postcss',
-		plugins: () => [
-			require('postcss-flexbugs-fixes'),
-			require('postcss-preset-env')({
-				autoprefixer: {
-					flexbox: 'no-2009',
-				},
-				stage: 3,
-			}),
-		],
-	},
 }
 
 // 编译时为 less文件生成 .d.ts
