@@ -26,7 +26,7 @@
 		"axios": "^0.26.0",
 		"connected-react-router": "^6.9.1",
 		"core-js": "^3.21.1",
-		"immer": "^8.0.0",
+		"immer": "^9.0.12",
 		"lodash": "^4.17.21",
 		"p-min-delay": "^4.0.1",
 		"react": "^17.0.2",
