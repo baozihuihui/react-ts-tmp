@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react'
 import { Button, Input } from 'antd'
-import * as _ from 'lodash'
-import * as styles from './index.less'
+import _ from 'lodash'
+import styles from './index.less'
 import IconFont from '@common/components/IconFonts'
 
 interface IProps {

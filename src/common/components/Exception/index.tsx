@@ -1,6 +1,6 @@
 import { Button } from 'antd'
 import React, { ErrorInfo } from 'react'
-import * as styles from './index.less'
+import styles from './index.less'
 
 export interface IExceptionProps {
 	errorCode: string
