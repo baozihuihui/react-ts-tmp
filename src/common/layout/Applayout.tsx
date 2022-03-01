@@ -1,20 +1,26 @@
-import Header from '@common/components/Header'
-import NavBar from '@common/components/NavBar'
-import ReactRoute from '@common/components/Route/Router'
-import { IRouteRoot } from '@common/interface/components/route'
+
+import ReactRoute from '../components/Route/Router'
+import { IRouteRoot } from '../interface/components/route'
 import React from 'react'
+import Header from './components/Header'
+import NavBar from './components/NavBar'
+import Footer from './components/Footer'
 
 const Applayout: React.FC<IRouteRoot> = (props: IRouteRoot) => {
 	return (
 		<>
-			<Header />
+			<head>
+				<Header />
+			</head>
 			<aside>
 				<NavBar />
 			</aside>
 			<section>
 				<ReactRoute routeInfos={props.routeInfos} defaultPath={props.defaultPath} />
 			</section>
-			<footer></footer>
+			<footer>
+				<Footer/>
+			</footer>
 		</>
 	)
 }
