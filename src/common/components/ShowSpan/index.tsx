@@ -1,7 +1,7 @@
 import React from 'react'
 
-const defaultStringEmptyValue = '无'
-const defaultNumberEmptyValue = '-'
+const DEFAULT_STRING_EMPTY_VALUE = '无'
+const DEFAULT_NUMBER_EMPTY_VALUE = '-'
 
 interface IShowSpanProps {
 	value: string | number | null | undefined
@@ -17,9 +17,9 @@ const ShowSpan = (props: IShowSpanProps) => {
 	let result: string | number
 	let emptyValueWithType: string
 	if (valueType === 'string') {
-		emptyValueWithType = emptyValue || defaultStringEmptyValue
+		emptyValueWithType = emptyValue || DEFAULT_STRING_EMPTY_VALUE
 	} else if (valueType === 'number') {
-		emptyValueWithType = emptyValue || defaultNumberEmptyValue
+		emptyValueWithType = emptyValue || DEFAULT_NUMBER_EMPTY_VALUE
 		result = value || value === 0 ? value : emptyValueWithType
 	} else {
 		result = ''
