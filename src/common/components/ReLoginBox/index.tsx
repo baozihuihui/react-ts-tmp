@@ -1,15 +1,9 @@
 import { IGlobalStateReLogin } from '@common/interface/redux'
+import { IState as IReLoginState } from './reducer'
 import React from 'react'
 import { connect } from 'react-redux'
 
-export interface IReLoginState {
-	active: Boolean
-	isRefresh: Boolean
-}
-
-interface IReLoginBoxProps {
-	ReLoginState: IReLoginState
-}
+type IReLoginBoxProps = { ReLoginState: IReLoginState }
 
 const ReLoginBox: React.FC<IReLoginBoxProps> = (props: IReLoginBoxProps) => {
 	const { ReLoginState } = props
