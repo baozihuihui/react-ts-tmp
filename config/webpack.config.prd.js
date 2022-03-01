@@ -3,7 +3,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserWebpackPlugin = require('terser-webpack-plugin')
 // var CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
 
@@ -12,7 +12,7 @@ const { loader } = require('./util')
 module.exports = {
 	mode: 'production',
 	entry: './src/pages/page1/index.tsx',
-	devtool: 'eval-cheap-source-map',
+	devtool: 'source-map',
 	// 输出文件位置
 	output: {
 		path: path.join(__dirname, '../dist'),
@@ -21,12 +21,9 @@ module.exports = {
 	},
 	// 执行配置项
 	optimization: {
+		minimize:true,
 		minimizer: [
-			new UglifyJsPlugin({
-				cache: true,
-				parallel: true,
-				sourceMap: true, // set to true if you want JS source maps
-			}),
+			new TerserWebpackPlugin ()
 		],
 	},
 	module: {
