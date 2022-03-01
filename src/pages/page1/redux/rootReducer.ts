@@ -8,10 +8,12 @@ import { combineReducers } from 'redux'
 import { History } from 'history'
 import { connectRouter, RouterState } from 'connected-react-router'
 import { reducer as ReduxTestReducer, IState as IReduxTestState } from '@view/reduxTest/reducer'
+// import { IReLoginState } from '@common/components/ReLoginBox'
 
-export interface IGlobalState {
+export interface IGlobalState{
 	router: RouterState
 	reduxTest: IReduxTestState
+	// relogin: IReLoginState
 }
 
 export const globalReducer = (history: History) =>

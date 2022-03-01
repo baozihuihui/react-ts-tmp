@@ -11,6 +11,7 @@ import configureStore, { history } from './redux/rootRedux'
 import routeInfos, { defaultPath } from './router/route.config'
 // layout header-left_NavBar-right_content-footer
 import Applayout from '@common/layout/Applayout'
+import ReLoginBox from '@common/components/ReLoginBox'
 
 export default class App extends React.Component {
 	store = configureStore()
@@ -20,6 +21,7 @@ export default class App extends React.Component {
 				<Provider store={this.store}>
 					<ConnectedRouter history={history}>
 						<Applayout routeInfos={routeInfos} defaultPath={defaultPath} />
+						<ReLoginBox />
 					</ConnectedRouter>
 				</Provider>
 			</ErrorBoundry>
