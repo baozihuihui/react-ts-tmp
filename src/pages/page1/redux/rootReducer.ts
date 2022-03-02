@@ -7,7 +7,7 @@
 import { combineReducers } from 'redux'
 import { History } from 'history'
 import { connectRouter, RouterState } from 'connected-react-router'
-import { reducer as ReduxTestReducer, IState as IReduxTestState } from '@view/reduxTest/reducer'
+import { reducer as ReduxTestReducer, IState as IReduxTestState } from '@view/ReduxTest/reducer'
 import { reducer as ReLoginBoxReducer } from '@common/components/ReLoginBox/reducer'
 import { reducer as ActionAlertReducer } from '@common/components/ActionAlert/reducer'
 
