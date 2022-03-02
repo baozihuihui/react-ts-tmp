@@ -25,7 +25,7 @@ interface IState {
 	offset?: number | string
 }
 
-class Banner extends React.Component<IProps, IState> {
+class ReduxTest extends React.Component<IProps, IState> {
 	state: IState = {
 		offset: 1,
 	}
@@ -36,21 +36,25 @@ class Banner extends React.Component<IProps, IState> {
 	}
 
 	handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		let { value } = e.target
-		if (value.includes('-')) {
-			this.props.ActionAlert.openAlert({ content: '增加数量不允许为负数' })
+		const { value } = e.target
+		const numValue = parseInt(value)
+		if (!isNaN(numValue) && 0 + numValue <= 0) {
+			this.props.ActionAlert.openAlert({ content: '增加数量不允许为0或负数' })
 		}
-		this.setState({ offset: isNaN(parseInt(value)) ? value : parseInt(value) })
+		this.setState({ offset: isNaN(numValue) ? value : numValue })
 	}
 
 	handleCounterBtn = (type: 'add' | 'sub' | 'saga') => () => {
 		const { offset } = this.state
 		if (offset && typeof offset === 'number') {
+			if (offset <= 0) {
+				this.props.ActionAlert.openAlert({ content: '增加数量不允许为0或负数' })
+			}
 			if (type === 'add') {
 				return this.props.actions.addCounter(offset)
 			} else if (type === 'sub') {
 				return this.props.actions.subConter(offset)
-			}else if(type === 'saga'){
+			} else if (type === 'saga') {
 				return this.props.actions.addCounterWithSaga(offset)
 			}
 		}
@@ -88,4 +92,4 @@ export default connect(
 		actions: bindActionCreators(actions, dispatch),
 		ActionAlert: bindActionCreators(ActionAlert, dispatch),
 	}),
-)(Banner)
+)(ReduxTest)

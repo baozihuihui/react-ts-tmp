@@ -5,6 +5,7 @@ import { AlertShowType, AlertType } from './constatnt'
 export interface IOpenState {
 	type?: AlertType
 	showType?: AlertShowType
+	autoClose?: boolean
 	content: string
 }
 export interface IState extends IOpenState {
@@ -15,6 +16,7 @@ export const INIT_STATE: IState = {
 	active: false,
 	type: AlertType.ERROR,
 	showType: AlertShowType.DEFAULT,
+	autoClose: true,
 	content: '',
 }
 

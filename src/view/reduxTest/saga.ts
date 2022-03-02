@@ -14,5 +14,5 @@ function* addCounterWithSaga(action: Action<number>) {
 
 export function* saga() {
 	yield takeEvery(actions.addCounterWithSaga, addCounterWithSaga)
-	// yield takeAsyncAction(actions.getContext,asyncActions.getContextAsync)
+	// yield takeAsyncAction(actions.getContext,asyncActions.getContextAsync,api.getContext)
 }

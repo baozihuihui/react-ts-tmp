@@ -1,6 +1,8 @@
 export enum AlertType {
 	SUCCESS = 'success',
-	ERROR = 'ERROR',
+	ERROR = 'error',
+	INFO = 'info',
+	WARNING = 'warning',
 }
 
 export enum AlertShowType {
