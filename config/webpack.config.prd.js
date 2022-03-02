@@ -11,20 +11,21 @@ const { loader } = require('./util')
 
 module.exports = {
 	mode: 'production',
-	entry: './src/pages/page1/index.tsx',
-	devtool: 'source-map',
+	entry: {
+		login: './src/pages/login/index.dev.tsx',
+		page1: './src/pages/page1/index.dev.tsx',
+	},
 	// 输出文件位置
 	output: {
 		path: path.join(__dirname, '../dist'),
 		filename: 'js/[name].[chunkhash:6].js',
 		chunkFilename: 'js/[name].[chunkhash:6].js',
 	},
+	devtool: 'source-map',
 	// 执行配置项
 	optimization: {
-		minimize:true,
-		minimizer: [
-			new TerserWebpackPlugin ()
-		],
+		minimize: true,
+		minimizer: [new TerserWebpackPlugin()],
 	},
 	module: {
 		rules: [
@@ -77,7 +78,15 @@ module.exports = {
 	plugins: [
 		new HtmlWebPackPlugin({
 			template: 'public/index.html',
-			filename: 'index.html',
+			filename: 'login/index.html',
+			chunks: ['login'],
+			inject: true,
+			favicon: 'public/favicon.ico',
+		}),
+		new HtmlWebPackPlugin({
+			template: 'public/index.html',
+			filename: 'page1/index.html',
+			chunks: ['page1'],
 			inject: true,
 			favicon: 'public/favicon.ico',
 		}),

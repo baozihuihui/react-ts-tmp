@@ -9,8 +9,7 @@ const { loader } = require('./util')
 module.exports = {
 	// 模式
 	mode: 'development',
-	// 入口文件 ，若多入口，则数组表示多个入口
-	// entry: ['./src/pages/page1/index.dev.tsx'],
+	// 入口文件 ，若多入口，则对象表示多个入口
 	entry: {
 		login: './src/pages/login/index.dev.tsx',
 		page1: './src/pages/page1/index.dev.tsx',
