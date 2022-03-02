@@ -10,7 +10,11 @@ module.exports = {
 	// 模式
 	mode: 'development',
 	// 入口文件 ，若多入口，则数组表示多个入口
-	entry: ['./src/pages/page1/index.dev.tsx'],
+	// entry: ['./src/pages/page1/index.dev.tsx'],
+	entry: {
+		login: './src/pages/login/index.dev.tsx',
+		page1: './src/pages/page1/index.dev.tsx',
+	},
 	output: {
 		publicPath: '/', // app.js => /app.js for H5 HistoryAPI staticPath
 	},
@@ -28,7 +32,6 @@ module.exports = {
 		},
 		host: '0.0.0.0', // 允许外部访问服务
 		port: 3000, // 端口
-		hot: true, // 是否允许热更新
 		compress: true, // 启用gzip压缩
 		historyApiFallback: true, // H5 historyAPI
 		allowedHosts: 'all', // 启动的项目配置host 允许访问
@@ -85,7 +88,15 @@ module.exports = {
 	plugins: [
 		new HtmlWebPackPlugin({
 			template: 'public/index.html',
-			filename: 'index.html',
+			filename: 'login/index.html',
+			chunks: ['login'],
+			inject: true,
+			favicon: 'public/favicon.ico',
+		}),
+		new HtmlWebPackPlugin({
+			template: 'public/index.html',
+			filename: 'page1/index.html',
+			chunks: ['page1'],
 			inject: true,
 			favicon: 'public/favicon.ico',
 		}),

@@ -1,6 +1,6 @@
 import { IRouteRoot } from '@common/interface/components/route'
 import React, { useMemo } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import lazyLoadComponentByFileDir from './lazyLoad'
 
 export default function ReactRoute(props: IRouteRoot) {
