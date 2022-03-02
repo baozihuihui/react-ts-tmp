@@ -25,7 +25,6 @@ module.exports = {
 		client: {
 			logging: 'info', // log 打印类型
 			overlay: true, // 编译失败 全屏展示错误信息
-			progress: true, // 编译进度
 		},
 		host: '0.0.0.0', // 允许外部访问服务
 		port: 3000, // 端口
