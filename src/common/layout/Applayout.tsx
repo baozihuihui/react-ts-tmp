@@ -1,4 +1,3 @@
-
 import ReactRoute from '../components/Route/Router'
 import { IRouteRoot } from '../interface/components/route'
 import React from 'react'
@@ -9,9 +8,9 @@ import Footer from './components/Footer'
 const Applayout: React.FC<IRouteRoot> = (props: IRouteRoot) => {
 	return (
 		<>
-			<head>
+			<header>
 				<Header />
-			</head>
+			</header>
 			<aside>
 				<NavBar />
 			</aside>
@@ -19,7 +18,7 @@ const Applayout: React.FC<IRouteRoot> = (props: IRouteRoot) => {
 				<ReactRoute routeInfos={props.routeInfos} defaultPath={props.defaultPath} />
 			</section>
 			<footer>
-				<Footer/>
+				<Footer />
 			</footer>
 		</>
 	)
