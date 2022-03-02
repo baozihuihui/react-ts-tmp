@@ -8,16 +8,20 @@ import { combineReducers } from 'redux'
 import { History } from 'history'
 import { connectRouter, RouterState } from 'connected-react-router'
 import { reducer as ReduxTestReducer, IState as IReduxTestState } from '@view/reduxTest/reducer'
-// import { IReLoginState } from '@common/components/ReLoginBox'
+import { reducer as ReLoginBoxReducer } from '@common/components/ReLoginBox/reducer'
+import { reducer as ActionAlertReducer } from '@common/components/ActionAlert/reducer'
 
-export interface IGlobalState{
+import { IGlobalStateReLogin } from '@common/interface/redux'
+
+export interface IGlobalState extends IGlobalStateReLogin {
 	router: RouterState
 	reduxTest: IReduxTestState
-	// relogin: IReLoginState
 }
 
 export const globalReducer = (history: History) =>
 	combineReducers<IGlobalState>({
 		router: connectRouter(history),
 		reduxTest: ReduxTestReducer,
+		reloginbox: ReLoginBoxReducer,
+		actionAlert: ActionAlertReducer,
 	})

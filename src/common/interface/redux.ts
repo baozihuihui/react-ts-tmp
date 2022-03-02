@@ -1,10 +1,10 @@
-import { IAlertState } from '@common/components/ActionAlert'
+import { IActionAlertState } from '@common/components/ActionAlert'
 import { IState as IReLoginState } from '@common/components/ReLoginBox/reducer'
 
 export interface IReduxGlobalStateBase {
-	Alert: IAlertState
+	actionAlert: IActionAlertState
 }
 
 export interface IGlobalStateReLogin extends IReduxGlobalStateBase {
-	ReLoginState: IReLoginState
+	reloginbox: IReLoginState
 }

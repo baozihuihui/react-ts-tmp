@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { IState as reduxTestState } from './reducer'
 import { bindActionCreators } from 'redux'
 import { actions } from './action'
+import { actions as ActionAlert } from '@common/components/ActionAlert/actions'
 import { Button, Input } from 'antd'
 
 interface IStateProps {
@@ -15,12 +16,13 @@ interface IStateProps {
 
 interface IDispatchProps {
 	actions: typeof actions
+	ActionAlert: typeof ActionAlert
 }
 
 type IProps = IStateProps & IDispatchProps
 
 interface IState {
-	offset: number
+	offset?: number | string
 }
 
 class Banner extends React.Component<IProps, IState> {
@@ -34,14 +36,23 @@ class Banner extends React.Component<IProps, IState> {
 	}
 
 	handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({ offset: parseInt(e.target.value) })
+		let { value } = e.target
+		if (value.includes('-')) {
+			this.props.ActionAlert.openAlert({ content: '增加数量不允许为负数' })
+		}
+		this.setState({ offset: isNaN(parseInt(value)) ? value : parseInt(value) })
 	}
 
-	handleCounterBtn = (type: 'add' | 'sub') => () => {
-		if (type === 'add') {
-			return this.props.actions.addCounter(this.state.offset)
-		} else if (type === 'sub') {
-			return this.props.actions.subConter(this.state.offset)
+	handleCounterBtn = (type: 'add' | 'sub' | 'saga') => () => {
+		const { offset } = this.state
+		if (offset && typeof offset === 'number') {
+			if (type === 'add') {
+				return this.props.actions.addCounter(offset)
+			} else if (type === 'sub') {
+				return this.props.actions.subConter(offset)
+			}else if(type === 'saga'){
+				return this.props.actions.addCounterWithSaga(offset)
+			}
 		}
 	}
 
@@ -60,7 +71,8 @@ class Banner extends React.Component<IProps, IState> {
 				</div>
 
 				<Button onClick={this.handleCounterBtn('add')}>增加</Button>
-				<Button onClick={this.handleCounterBtn('add')}>调用redux-saga 增加</Button>
+				<Button onClick={this.handleCounterBtn('add')}>调用redux 增加</Button>
+				<Button onClick={this.handleCounterBtn('saga')}>调用redux-saga</Button>
 				<Button onClick={this.handleCounterBtn('sub')}>减小</Button>
 			</>
 		)
@@ -74,5 +86,6 @@ export default connect(
 	}),
 	dispatch => ({
 		actions: bindActionCreators(actions, dispatch),
+		ActionAlert: bindActionCreators(ActionAlert, dispatch),
 	}),
 )(Banner)
