@@ -2,6 +2,7 @@ import { IReduxGlobalStateBase } from '@common/interface/redux'
 import { IState as IActionAlertState } from './reducer'
 import { AlertShowType, AlertType } from './constatnt'
 import { actions } from './actions'
+import styles from "./index.less"
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Alert, message } from 'antd'
@@ -20,7 +21,6 @@ type ActionAlertProps = IStateProps & IDispatchProps
 const ActionAlert: React.FC<ActionAlertProps> = props => {
 	const { active, content, type, showType, autoClose } = props.AlertState
 	const [isTip, changeIsTip] = useState(false)
-	let timer = null;
 	useEffect(() => {
 		if (active) {
 			if (showType === AlertShowType.TIP) {
@@ -32,7 +32,7 @@ const ActionAlert: React.FC<ActionAlertProps> = props => {
 				}
 			}else if(showType === AlertShowType.DEFAULT){
 				if(autoClose){
-					timer = setTimeout(()=>{
+					setTimeout(()=>{
 						onClose();
 					},2000)
 				}
@@ -46,7 +46,9 @@ const ActionAlert: React.FC<ActionAlertProps> = props => {
 	}
 
 	return active && !isTip ? (
-		<Alert message={content} type={type} closable={!autoClose} onClose={onClose} showIcon />
+		<div className={styles.actionAlert}>
+			<Alert message={content} type={type} closable={!autoClose} onClose={onClose} showIcon />
+		</div>
 	) : null
 }
 
