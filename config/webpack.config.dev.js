@@ -18,7 +18,7 @@ module.exports = {
 		publicPath: '/', // app.js => /app.js for H5 HistoryAPI staticPath
 	},
 	// 开发环境我们只添加  忽略列信息的ts源码的sourcemap
-	devtool: 'eval-source-map',
+	devtool: 'source-map',
 	// 本地服务器
 	devServer: {
 		// 静态资源访问配置

@@ -38,21 +38,23 @@ const Exception: React.FC<IExceptionProps> = (props: IExceptionProps) => {
 				<h1 className={styles.title}>{errorCode}</h1>
 				<div className={styles.content}>{context}</div>
 				{props.children ? props.children : null}
-				{useBack && (
-					<Button type={'primary'} onClick={goBack}>
-						返回上一级
-					</Button>
-				)}
-				{useSendErrorIfo && (
-					<Button type={'default'} onClick={sendErrorInfo}>
-						上报错误信息
-					</Button>
-				)}
-				{useCallAuthor && (
-					<Button type={'default'} onClick={callAuthor}>
-						联系我们
-					</Button>
-				)}
+				<div className={styles.handleBtn}>
+					{useBack && (
+						<Button type={'primary'} onClick={goBack}>
+							返回上级
+						</Button>
+					)}
+					{useSendErrorIfo && (
+						<Button type={'default'} onClick={sendErrorInfo}>
+							上报错误信息
+						</Button>
+					)}
+					{useCallAuthor && (
+						<Button type={'default'} onClick={callAuthor}>
+							联系我们
+						</Button>
+					)}
+				</div>
 			</section>
 		</>
 	)

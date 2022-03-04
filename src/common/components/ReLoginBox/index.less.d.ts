@@ -2,10 +2,9 @@
 // Please do not change this file!
 declare namespace IndexLessNamespace {
 	export interface IIndexLess {
-		content: string
-		handleBtn: string
-		page: string
-		title: string
+		imgDiv: string
+		loginBox: string
+		msgBtn: string
 	}
 }
 

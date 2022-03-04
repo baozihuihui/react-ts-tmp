@@ -9,7 +9,7 @@ export interface IOpenState {
 	content: string
 }
 export interface IState extends IOpenState {
-	active: Boolean
+	active: boolean
 }
 
 export const INIT_STATE: IState = {

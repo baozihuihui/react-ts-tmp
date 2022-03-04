@@ -7,6 +7,7 @@ import { IState as reduxTestState } from './reducer'
 import { bindActionCreators } from 'redux'
 import { actions } from './action'
 import { actions as ActionAlert } from '@common/components/ActionAlert/actions'
+import { actions as ReLoginBox } from '@common/components/ReLoginBox/actions'
 import { Button, Input } from 'antd'
 
 interface IStateProps {
@@ -17,17 +18,20 @@ interface IStateProps {
 interface IDispatchProps {
 	actions: typeof actions
 	ActionAlert: typeof ActionAlert
+	ReLoginBox: typeof ReLoginBox
 }
 
 type IProps = IStateProps & IDispatchProps
 
 interface IState {
 	offset?: number | string
+	reloginBtn_disabled: boolean
 }
 
 class ReduxTest extends React.Component<IProps, IState> {
 	state: IState = {
 		offset: 1,
+		reloginBtn_disabled: false,
 	}
 
 	componentDidMount() {
@@ -60,6 +64,14 @@ class ReduxTest extends React.Component<IProps, IState> {
 		}
 	}
 
+	handleReLoginBox = () => {
+		this.setState({ reloginBtn_disabled: true }, () => {
+			setTimeout(()=>{
+				this.props.ReLoginBox.openBox()
+			},3*1000)
+		})
+	}
+
 	render() {
 		return (
 			<>
@@ -78,6 +90,8 @@ class ReduxTest extends React.Component<IProps, IState> {
 				<Button onClick={this.handleCounterBtn('add')}>调用redux 增加</Button>
 				<Button onClick={this.handleCounterBtn('saga')}>调用redux-saga</Button>
 				<Button onClick={this.handleCounterBtn('sub')}>减小</Button>
+				<br />
+				<Button onClick={this.handleReLoginBox}>3s后出发登录弹窗</Button>
 			</>
 		)
 	}
@@ -91,5 +105,6 @@ export default connect(
 	dispatch => ({
 		actions: bindActionCreators(actions, dispatch),
 		ActionAlert: bindActionCreators(ActionAlert, dispatch),
+		ReLoginBox: bindActionCreators(ReLoginBox,dispatch)
 	}),
 )(ReduxTest)
