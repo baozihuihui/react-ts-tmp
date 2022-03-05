@@ -78,7 +78,7 @@ const ReLoginBox: React.FC<IReLoginBoxProps> = (props: IReLoginBoxProps) => {
 		}, 2000)
 	}
 
-	const goRegister = ()=>{
+	const goRegister = () => {
 		window.location.href = '/register'
 	}
 
@@ -86,15 +86,36 @@ const ReLoginBox: React.FC<IReLoginBoxProps> = (props: IReLoginBoxProps) => {
 		<Modal title={null} footer={null} closable={false} visible={active}>
 			<Tabs centered size='small' accessKey={loginType} onChange={handleChangeLoginType}>
 				<TabPane tab='账号登录' key={LoginType.PASSWORD}>
-					<UserName value={userInfo.userName} changeValue={handleChangeUserInfo} />
-					<PassWord value={userInfo.password} changeValue={handleChangeUserInfo} />
+					<UserNameFormItem
+						stateKey='userName'
+						keyName='手机号或邮箱'
+						getState={getUserInfo}
+						changeValue={handleChangeUserInfo}
+					/>
+					<PassWordFormItem
+						stateKey='password'
+						keyName='密码'
+						getState={getUserInfo}
+						changeValue={handleChangeUserInfo}
+					/>
 				</TabPane>
 				<TabPane tab='短信登录' key={LoginType.MESSAGE_CODE}>
-					<UserName value={userInfo.userName} changeValue={handleChangeUserInfo} />
-					<ImgCode value={userInfo.imgCode} changeValue={handleChangeUserInfo} />
-					<MsgCode
-						value={userInfo.msgCode}
-						getUserInfo={getUserInfo}
+					<UserNameFormItem
+						stateKey='userName'
+						keyName='手机号或邮箱'
+						getState={getUserInfo}
+						changeValue={handleChangeUserInfo}
+					/>
+					<ImgCodeFormItem
+						stateKey='imgCode'
+						keyName='图片验证码'
+						getState={getUserInfo}
+						changeValue={handleChangeUserInfo}
+					/>
+					<MsgCodeFormItem
+						stateKey='msgCode'
+						keyName='短信验证码'
+						getState={getUserInfo}
 						changeValue={handleChangeUserInfo}
 					/>
 				</TabPane>
@@ -102,7 +123,9 @@ const ReLoginBox: React.FC<IReLoginBoxProps> = (props: IReLoginBoxProps) => {
 			<Button type='primary' block loading={loadding} onClick={handleLogin}>
 				登录
 			</Button>
-			<Button type="link" onClick={goRegister}>还没有账号，现在去注册</Button>
+			<Button type='link' onClick={goRegister} className={styles.registerBtn}>
+				还没有账号，现在去注册
+			</Button>
 		</Modal>
 	)
 }
@@ -118,7 +141,41 @@ export default connect(
 
 interface ElementProps {
 	value?: string
+	getUserInfo: () => IUserInfo
 	changeValue: (key: keyof IUserInfo, value: string) => void
+}
+
+interface FormItemProps<T> {
+	stateKey: keyof T
+	keyName: string
+	getState: () => T
+	changeValue: (key: keyof T, value: string) => void
+}
+
+const FormItemCreator = (Component: React.FC<ElementProps>) => {
+	const FormItem: React.FC<FormItemProps<IUserInfo>> = props => {
+		const { stateKey, keyName, getState, changeValue } = props
+		const value = getState()[stateKey]
+		const [error, setError] = useState('')
+
+		const validator = (): boolean => {
+			if (true) {
+				setError(`${keyName}不允许为空`)
+			}
+			return true
+		}
+
+		return (
+			<div className={styles.formItem}>
+				<div className={styles.item}>
+					<Component value={value} changeValue={changeValue} getUserInfo={getState} />
+				</div>
+				<div className={`${styles.error} ${error !== '' ? styles['error-active'] : null}`}>{error}</div>
+			</div>
+		)
+	}
+
+	return FormItem
 }
 
 const UserName: React.FC<ElementProps> = props => {
@@ -134,6 +191,7 @@ const UserName: React.FC<ElementProps> = props => {
 		/>
 	)
 }
+
 const PassWord: React.FC<ElementProps> = props => {
 	const { value, changeValue } = props
 	return (
@@ -156,34 +214,36 @@ const ImgCode: React.FC<ElementProps> = props => {
 			setState({ url: '', loading: false })
 		}, 2000)
 	}
+
+	const renderError = () => {
+		setState({ url: '', loading: false })
+	}
+
 	useEffect(() => {
 		getImg()
 	}, [])
 	return (
-		<div>
-			<Input
-				placeholder='请输入图片验证码'
-				value={value}
-				onChange={e => {
-					changeValue('imgCode', e.target.value)
-				}}
-				addonAfter={
-					<Spin spinning={state.loading} delay={200} size='small'>
-						<div onClick={getImg} className={styles.imgDiv}>
-							{!state.loading && state.url === '' ? '点击重试' : null}
-							{state.url !== '' ? (
-								<img src={state.url} alt='点击重试' />
-							) : null}
-						</div>
-					</Spin>
-				} />
-		</div>
+		<Input
+			placeholder='请输入图片验证码'
+			value={value}
+			onChange={e => {
+				changeValue('imgCode', e.target.value)
+			}}
+			addonAfter={
+				<Spin spinning={state.loading} delay={200} size='small'>
+					<div onClick={getImg} className={styles.imgDiv}>
+						{!state.loading && state.url === '' ? '点击重试' : null}
+						{state.url !== '' ? (
+							<img src={state.url} alt='点击重试' onError={renderError} />
+						) : null}
+					</div>
+				</Spin>
+			}
+		/>
 	)
 }
 
-type MsgCodeProps = ElementProps & { getUserInfo: () => IUserInfo }
-
-const MsgCode: React.FC<MsgCodeProps> = props => {
+const MsgCode: React.FC<ElementProps> = props => {
 	const { value, getUserInfo, changeValue } = props
 	const [state, setState] = useState({ loading: false, active: false, num: 0 })
 	let timer: NodeJS.Timer | null = null
@@ -243,3 +303,8 @@ const MsgCode: React.FC<MsgCodeProps> = props => {
 		/>
 	)
 }
+
+const UserNameFormItem = FormItemCreator(UserName)
+const PassWordFormItem = FormItemCreator(PassWord)
+const ImgCodeFormItem = FormItemCreator(ImgCode)
+const MsgCodeFormItem = FormItemCreator(MsgCode)

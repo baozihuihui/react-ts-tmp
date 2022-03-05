@@ -2,9 +2,14 @@
 // Please do not change this file!
 declare namespace IndexLessNamespace {
 	export interface IIndexLess {
+		error: string
+		'error-active': string
+		formItem: string
 		imgDiv: string
+		item: string
 		loginBox: string
 		msgBtn: string
+		registerBtn: string
 	}
 }
 
